@@ -4,12 +4,12 @@ namespace EasyShare.WebApi.GetShare;
 
 [ApiController]
 [Tags("shares")]
-[Route("shares/{slug}")]
+[Route("shares/{id}")]
 public class GetShareController : ControllerBase
 {
     [HttpGet(Name = nameof(GetShare))]
-    public ActionResult<string> GetShare([FromRoute] string slug)
+    public ActionResult<string> GetShare([FromRoute] string id)
     {
-        return Ok(slug);
+        return Ok(id);
     }
 }

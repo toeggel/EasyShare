@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "5.0.1",
+    "generators": {
+      "share": {
+        "generatorName": "typescript-fetch",
+        "output": "#{cwd}/src/lib/_generated-api",
+        "inputSpec": "https://localhost:7200/swagger/v1/swagger.json"
+      }
+    }
+  }
+}
