@@ -1,2 +1,47 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<header class="row">
+    <h1>EasyShare</h1>
+    <button class="btn">Publish</button>
+</header>
+
+<main class="input-wrapper">
+    <textarea class="input" placeholder="Insert text here"></textarea>
+</main>
+
+<footer class="row">
+    <button class="btn">Copy</button>
+    <button class="btn">Share</button>
+</footer>
+
+<style>
+    header {
+        margin-bottom: 16px;
+    }
+
+    footer {
+        margin-top: 16px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        gap: 16px;
+        height: 32px;
+    }
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .input-wrapper .input {
+        height: 100%;
+    }
+
+</style>

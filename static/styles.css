@@ -1,0 +1,81 @@
+:root {
+    /*Nord Theme*/
+    /*Styleguide Nord - Polar Night*/
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+
+    /*Styleguide Nord - Snow Storm*/
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+
+    /*Styleguide Nord - Frost*/
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+
+    /*Styleguide Nord - Aurora*/
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+
+    --primary1: var(--nord0);
+    --primary2: var(--nord1);
+    --primary3: var(--nord2);
+    --primary4: var(--nord3);
+
+    --accent1: var(--nord7);
+    --accent2: var(--nord8);
+    --accent3: var(--nord9);
+    --accent4: var(--nord10);
+
+    --text1: var(--nord4);
+    --text2: var(--nord5);
+    --text3: var(--nord6);
+
+    --error: var(--nord11);
+    --warn: var(--nord13);
+    --success: var(--nord14);
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    color: var(--text3);
+    background-color: var(--primary2);
+    border-color: var(--primary3);
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--text3);
+}
+
+.btn {
+    cursor: pointer;
+    height: 32px;
+    background-color: var(--primary2);
+    color: var(--text3);
+    font-weight: bold;
+    border: 0;
+}
+
+.btn:hover {
+    background-color: var(--primary3);
+}
+
+.btn:active {
+    background-color: var(--primary4);
+}
