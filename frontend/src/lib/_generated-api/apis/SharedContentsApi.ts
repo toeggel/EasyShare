@@ -15,24 +15,24 @@
 
 import * as runtime from '../runtime';
 
-export interface GetShareRequest {
+export interface GetSharedContentRequest {
     id: string;
 }
 
 /**
  * 
  */
-export class SharesApi extends runtime.BaseAPI {
+export class SharedContentsApi extends runtime.BaseAPI {
 
     /**
      */
-    async createShareRaw(): Promise<runtime.ApiResponse<void>> {
+    async createSharedContentRaw(): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/shares`,
+            path: `/shared-contents`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -43,15 +43,15 @@ export class SharesApi extends runtime.BaseAPI {
 
     /**
      */
-    async createShare(): Promise<void> {
-        await this.createShareRaw();
+    async createSharedContent(): Promise<void> {
+        await this.createSharedContentRaw();
     }
 
     /**
      */
-    async getShareRaw(requestParameters: GetShareRequest): Promise<runtime.ApiResponse<string>> {
+    async getSharedContentRaw(requestParameters: GetSharedContentRequest): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getShare.');
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSharedContent.');
         }
 
         const queryParameters: any = {};
@@ -59,7 +59,7 @@ export class SharesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/shares/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/shared-contents/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -70,20 +70,20 @@ export class SharesApi extends runtime.BaseAPI {
 
     /**
      */
-    async getShare(requestParameters: GetShareRequest): Promise<string> {
-        const response = await this.getShareRaw(requestParameters);
+    async getSharedContent(requestParameters: GetSharedContentRequest): Promise<string> {
+        const response = await this.getSharedContentRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async getSharesRaw(): Promise<runtime.ApiResponse<Array<string>>> {
+    async getSharedContentsRaw(): Promise<runtime.ApiResponse<Array<string>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/shares`,
+            path: `/shared-contents`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -94,8 +94,8 @@ export class SharesApi extends runtime.BaseAPI {
 
     /**
      */
-    async getShares(): Promise<Array<string>> {
-        const response = await this.getSharesRaw();
+    async getSharedContents(): Promise<Array<string>> {
+        const response = await this.getSharedContentsRaw();
         return await response.value();
     }
 

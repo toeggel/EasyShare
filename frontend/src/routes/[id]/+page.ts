@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { Configuration, SharesApi } from '$lib/_generated-api';
+import { Configuration, SharedContentsApi } from '$lib/_generated-api';
 
 export const load: PageLoad = async ({ params }) => {
     const { id }: { id: string } = params;
@@ -7,9 +7,9 @@ export const load: PageLoad = async ({ params }) => {
         const configuration = new Configuration({
             basePath: 'https://localhost:7200',
         });
-        const shareApi = new SharesApi(configuration);
+        const shareApi = new SharedContentsApi(configuration);
         return {
-            content: await shareApi.getShare({ id }),
+            content: await shareApi.getSharedContent({ id }),
         };
     }
 
