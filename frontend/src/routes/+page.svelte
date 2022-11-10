@@ -2,20 +2,22 @@
 
     let content = '';
 
-    import { SharedContentsService } from '$lib/shared-contents.service';
+    const publish = async (): Promise<void> => {
+        // localhost does not work here. Use 127.0.0.1
+        await fetch(`https://127.0.0.1:7200/shared-contents`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(content),
+        });
+    };
 
-    async function publish(event: MouseEvent): Promise<void> {
-        const sharedContentsService = new SharedContentsService();
-        await sharedContentsService.createSharedContent(content);
-    }
-
-    const copy = (event: MouseEvent): void => {
+    const copy = (): void => {
         const content = document.getElementsByClassName('input')[0] as HTMLInputElement;
         navigator.clipboard.writeText(content.value);
     };
 
-    function share(event: MouseEvent): void {
-    }
+    const share = (): void => {
+    };
 
 </script>
 

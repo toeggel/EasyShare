@@ -1,4 +1,5 @@
 using EasyShare.WebApi.Infrastructure.Database;
+using EasyShare.WebApi.SharedContents.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,10 +18,11 @@ public class GetSharedContentController : ControllerBase
     }
 
     [HttpGet(Name = nameof(GetSharedContent))]
-    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetSharedContent([FromRoute] int id)
+    [ProducesResponseType(typeof(SharedContent), StatusCodes.Status200OK)]
+    public async Task<ActionResult<SharedContent>> GetSharedContent([FromRoute] int id)
     {
-        var content = await _databaseContext.SharedContents.SingleOrDefaultAsync(sc => sc.Id == id);
+        var content = await _databaseContext.SharedContents.SingleOrDefaultAsync(sc => sc.Id == id)
+                      ?? new SharedContent { Content = string.Empty };
         return Ok(content);
     }
 }

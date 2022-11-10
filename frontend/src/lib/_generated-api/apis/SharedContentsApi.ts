@@ -14,6 +14,11 @@
 
 
 import * as runtime from '../runtime';
+import {
+    SharedContent,
+    SharedContentFromJSON,
+    SharedContentToJSON,
+} from '../models';
 
 export interface CreateSharedContentRequest {
     body?: string;
@@ -56,7 +61,7 @@ export class SharedContentsApi extends runtime.BaseAPI {
 
     /**
      */
-    async getSharedContentRaw(requestParameters: GetSharedContentRequest): Promise<runtime.ApiResponse<string>> {
+    async getSharedContentRaw(requestParameters: GetSharedContentRequest): Promise<runtime.ApiResponse<SharedContent>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getSharedContent.');
         }
@@ -72,19 +77,19 @@ export class SharedContentsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.TextApiResponse(response) as any;
+        return new runtime.JSONApiResponse(response, (jsonValue) => SharedContentFromJSON(jsonValue));
     }
 
     /**
      */
-    async getSharedContent(requestParameters: GetSharedContentRequest): Promise<string> {
+    async getSharedContent(requestParameters: GetSharedContentRequest): Promise<SharedContent> {
         const response = await this.getSharedContentRaw(requestParameters);
         return await response.value();
     }
 
     /**
      */
-    async getSharedContentsRaw(): Promise<runtime.ApiResponse<Array<string>>> {
+    async getSharedContentsRaw(): Promise<runtime.ApiResponse<Array<SharedContent>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -96,12 +101,12 @@ export class SharedContentsApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse<any>(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SharedContentFromJSON));
     }
 
     /**
      */
-    async getSharedContents(): Promise<Array<string>> {
+    async getSharedContents(): Promise<Array<SharedContent>> {
         const response = await this.getSharedContentsRaw();
         return await response.value();
     }

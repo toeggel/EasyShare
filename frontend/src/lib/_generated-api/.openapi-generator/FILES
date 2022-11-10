@@ -1,4 +1,6 @@
 apis/SharedContentsApi.ts
 apis/index.ts
 index.ts
+models/SharedContent.ts
+models/index.ts
 runtime.ts
