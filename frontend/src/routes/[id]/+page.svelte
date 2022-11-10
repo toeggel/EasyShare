@@ -1,8 +1,9 @@
 <script lang="ts">
     import type { PageData } from './$types';
+    import SharedContent from '$lib/SharedContent.svelte';
 
     export let data: PageData;
     console.log(data);
 </script>
 
-<div>{data.content}</div>
+<SharedContent content="{data.content}"></SharedContent>
