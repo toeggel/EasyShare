@@ -1,14 +1,18 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
+    import type { SharedContent } from '$lib/_generated-api';
 
     let content = '';
 
     const publish = async (): Promise<void> => {
-        // localhost does not work here. Use 127.0.0.1
-        await fetch(`https://127.0.0.1:7200/shared-contents`, {
+        const response = await fetch(`https://localhost:7200/shared-contents`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(content),
         });
+
+        let sharedContent = await response.json() as SharedContent;
+        goto(`${ sharedContent.id }`);
     };
 
     const copy = (): void => {

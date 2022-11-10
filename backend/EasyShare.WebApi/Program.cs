@@ -1,4 +1,5 @@
 using EasyShare.WebApi.Infrastructure.Database;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,7 @@ corsBuilder =>
 {
     corsBuilder.AllowAnyOrigin()
         .AllowAnyMethod()
+        .WithExposedHeaders("Location")
         .AllowAnyHeader();
 });
 

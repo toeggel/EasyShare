@@ -1,5 +1,6 @@
 using EasyShare.WebApi.Infrastructure.Database;
 using EasyShare.WebApi.SharedContents.Entities;
+using EasyShare.WebApi.SharedContents.GetSharedContent;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyShare.WebApi.SharedContents.CreateSharedContent;
@@ -18,12 +19,13 @@ public class CreateSharedContentController : ControllerBase
 
     [HttpPost(Name = nameof(CreateSharedContent))]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> CreateSharedContent([FromBody] string content)
+    public async Task<CreatedAtRouteResult> CreateSharedContent([FromBody] string content)
     {
         var sharedContent = new SharedContent { Content = content };
         await _databaseContext.SharedContents.AddAsync(sharedContent);
         await _databaseContext.SaveChangesAsync();
+        const string actionName = nameof(GetSharedContentController.GetSharedContent);
 
-        return NoContent();
+        return CreatedAtRoute(actionName, new { id = sharedContent.Id }, sharedContent);
     }
 }
