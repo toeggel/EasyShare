@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EasyShare.WebApi.GetShares;
+namespace EasyShare.WebApi.SharedContents.GetSharedContents;
 
 [ApiController]
-[Tags("shares")]
-[Route("shares")]
+[Route("shared-contents")]
+[Tags("shared-contents")]
 public class GetSharesController : ControllerBase
 {
-    [HttpGet(Name = nameof(GetShares))]
-    public IEnumerable<string> GetShares()
+    [HttpGet(Name = nameof(GetSharedContents))]
+    public IEnumerable<string> GetSharedContents()
     {
         return new List<string>
         {
