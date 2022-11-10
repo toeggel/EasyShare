@@ -6,4 +6,4 @@
     console.log(data);
 </script>
 
-<SharedContent content="{data.content}"></SharedContent>
+<SharedContent sharedContent="{data}"></SharedContent>

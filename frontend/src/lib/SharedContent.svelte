@@ -2,7 +2,8 @@
     import { goto } from '$app/navigation';
     import type { SharedContent } from '$lib/_generated-api';
 
-    export let content = '';
+    export let sharedContent: SharedContent | null = { id: 0 };
+    let content = sharedContent.content
 
     const publish = async (): Promise<void> => {
         const response = await fetch(`https://localhost:7200/shared-contents`, {
@@ -20,10 +21,18 @@
         navigator.clipboard.writeText(content.value);
     };
 
+    const share = (): void => {
+        const link = location.href;
+        navigator.clipboard.writeText(link);
+        alert(`Link copied: ${ link }`);
+    };
+
 </script>
 
 <header class="row">
-    <h1>EasyShare</h1>
+    <h1>
+        EasyShare [{sharedContent?.id}]
+    </h1>
     <button class="btn" on:click={publish}>Save</button>
 </header>
 
@@ -33,6 +42,7 @@
 
 <footer class="row">
     <button class="btn" on:click={copy}>Copy</button>
+    <button class="btn" on:click={share}>Share</button>
 </footer>
 
 <style>
