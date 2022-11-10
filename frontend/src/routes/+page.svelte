@@ -1,11 +1,18 @@
 <script lang="ts">
-    function publish(event: MouseEvent): void {
+
+    let content = '';
+
+    import { SharedContentsService } from '$lib/shared-contents.service';
+
+    async function publish(event: MouseEvent): Promise<void> {
+        const sharedContentsService = new SharedContentsService();
+        await sharedContentsService.createSharedContent(content);
     }
 
     const copy = (event: MouseEvent): void => {
-        const content = document.getElementsByClassName("input")[0] as HTMLInputElement ;
+        const content = document.getElementsByClassName('input')[0] as HTMLInputElement;
         navigator.clipboard.writeText(content.value);
-    }
+    };
 
     function share(event: MouseEvent): void {
     }
@@ -18,7 +25,7 @@
 </header>
 
 <main class="input-wrapper">
-    <textarea class="input" placeholder="Insert text here"></textarea>
+    <textarea class="input" placeholder="Insert text here" bind:value={content}></textarea>
 </main>
 
 <footer class="row">

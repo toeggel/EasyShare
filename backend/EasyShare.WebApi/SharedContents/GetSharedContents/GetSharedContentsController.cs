@@ -1,4 +1,6 @@
+using EasyShare.WebApi.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyShare.WebApi.SharedContents.GetSharedContents;
 
@@ -7,14 +9,18 @@ namespace EasyShare.WebApi.SharedContents.GetSharedContents;
 [Tags("shared-contents")]
 public class GetSharesController : ControllerBase
 {
-    [HttpGet(Name = nameof(GetSharedContents))]
-    public IEnumerable<string> GetSharedContents()
+    private readonly DatabaseContext _databaseContext;
+
+    public GetSharesController(DatabaseContext databaseContext)
     {
-        return new List<string>
-        {
-            "asd",
-            "123123",
-            "ds fsd f",
-        };
+        _databaseContext = databaseContext;
+    }
+
+    [HttpGet(Name = nameof(GetSharedContents))]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<string>>> GetSharedContents()
+    {
+        var sharedContents = await _databaseContext.SharedContents.ToListAsync();
+        return Ok(sharedContents);
     }
 }

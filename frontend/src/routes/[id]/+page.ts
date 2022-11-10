@@ -1,16 +1,12 @@
 import type { PageLoad } from './$types';
-import { Configuration, SharedContentsApi } from '$lib/_generated-api';
+import { SharedContentsService } from '$lib/shared-contents.service';
 
-export const load: PageLoad = async ({ params }) => {
-    const { id }: { id: string } = params;
+export const load: PageLoad = async ({ fetch, params }) => {
     if (typeof window!=='undefined') {
-        const configuration = new Configuration({
-            basePath: 'https://localhost:7200',
-        });
-        const shareApi = new SharedContentsApi(configuration);
+        const { id }: { id: string } = params;
+        const sharedContentsService = new SharedContentsService();
         return {
-            content: await shareApi.getSharedContent({ id }),
+            content: await sharedContentsService.getSharedContent(id),
         };
     }
-
 };

@@ -15,8 +15,12 @@
 
 import * as runtime from '../runtime';
 
+export interface CreateSharedContentRequest {
+    body?: string;
+}
+
 export interface GetSharedContentRequest {
-    id: string;
+    id: number;
 }
 
 /**
@@ -26,16 +30,19 @@ export class SharedContentsApi extends runtime.BaseAPI {
 
     /**
      */
-    async createSharedContentRaw(): Promise<runtime.ApiResponse<void>> {
+    async createSharedContentRaw(requestParameters: CreateSharedContentRequest): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
             path: `/shared-contents`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: requestParameters.body as any,
         });
 
         return new runtime.VoidApiResponse(response);
@@ -43,8 +50,8 @@ export class SharedContentsApi extends runtime.BaseAPI {
 
     /**
      */
-    async createSharedContent(): Promise<void> {
-        await this.createSharedContentRaw();
+    async createSharedContent(requestParameters: CreateSharedContentRequest): Promise<void> {
+        await this.createSharedContentRaw(requestParameters);
     }
 
     /**
