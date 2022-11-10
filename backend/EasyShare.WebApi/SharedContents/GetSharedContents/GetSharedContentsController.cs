@@ -8,11 +8,11 @@ namespace EasyShare.WebApi.SharedContents.GetSharedContents;
 [ApiController]
 [Route("shared-contents")]
 [Tags("shared-contents")]
-public class GetSharesController : ControllerBase
+public class GetSharedContentsController : ControllerBase
 {
     private readonly DatabaseContext _databaseContext;
 
-    public GetSharesController(DatabaseContext databaseContext)
+    public GetSharedContentsController(DatabaseContext databaseContext)
     {
         _databaseContext = databaseContext;
     }
