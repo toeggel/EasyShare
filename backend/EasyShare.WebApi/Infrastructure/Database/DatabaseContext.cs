@@ -40,6 +40,11 @@ public class DatabaseContext : DbContext
         throw new InvalidOperationException("Sync version of save changes must not be called");
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDefaultSchema("ES");
+    }
+
     private void UpdateLineageFields()
     {
         var timestamp = DateTimeOffset.Now;
