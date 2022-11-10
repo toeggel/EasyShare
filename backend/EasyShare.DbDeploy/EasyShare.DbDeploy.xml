@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<doc>
+	<assembly>
+		<name>EasyShare.DbDeploy</name>
+	</assembly>
+	<members>
+		<member name="T:EasyShare.DbDeploy.Helper.AzureSqlConnectionManager">
+			<summary>
+				This class is used to define a ConnectionManager which allows to pass the AccessToken from outside.
+				The built-in ConnectionManager only supports to generate the AccessToken itself.
+			</summary>
+		</member>
+	</members>
+</doc>
